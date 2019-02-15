@@ -337,7 +337,7 @@ body {
   $radius: 2.3rem;
 
   width: 100%;
-  border-spacing: 0 .8rem;
+  border-spacing: .8rem .8rem;
   border-collapse: separate;
 
   tr {
@@ -356,7 +356,7 @@ body {
         button {
           text-align: left;
           padding-left: 1.5rem;
-          width: calc(100% - 1rem);
+          width: calc(100% - .4rem);
         }
       }
     }
