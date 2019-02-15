@@ -218,6 +218,7 @@ export default Vue.extend({
     return {
       buffer: '0',
       nextTypeWillPush: false,
+      nextTypeWillClear: false,
       stack: [] as number[],
     }
   },
@@ -255,6 +256,11 @@ export default Vue.extend({
         this.clear()
       }
 
+      if (this.nextTypeWillClear) {
+        this.nextTypeWillClear = false
+        this.clear()
+      }
+
       if (typeof v === 'number') {
         this.buffer += v
       } else {
@@ -266,7 +272,7 @@ export default Vue.extend({
     },
     push () {
       this.stack.push(parseFloat(this.buffer))
-      this.nextTypeWillPush = true
+      this.nextTypeWillClear = true
     },
     divideBy100 () {
       const b = +this.buffer
