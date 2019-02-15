@@ -4,7 +4,7 @@ Visually modeled off of the iOS 12 calculator and optimized for display on iPhon
 
 Functionality based on the HP-41CX, which I used all through college.
 
-![](screenshots/screen1.png)
+<img src="screenshots/screen1.png" width="30%">
 
 ## Project setup
 ```
