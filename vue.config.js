@@ -5,5 +5,8 @@ module.exports = {
   pwa: {
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
+    iconPaths: {
+      appleTouchIcon: 'img/icons/apple-touch-icon.png',
+    },
   },
 }
