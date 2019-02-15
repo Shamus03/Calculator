@@ -266,8 +266,7 @@ export default Vue.extend({
     },
     push () {
       this.stack.push(parseFloat(this.buffer))
-      this.buffer = '0'
-      this.nextTypeWillPush = false
+      this.nextTypeWillPush = true
     },
     divideBy100 () {
       const b = +this.buffer
