@@ -1,6 +1,6 @@
 {
-  "name": "calculon",
-  "short_name": "calculon",
+  "name": "Calculator",
+  "short_name": "Calculator",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -14,7 +14,7 @@
     }
   ],
   "start_url": "./index.html",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#000000",
   "theme_color": "#4DBA87"
 }

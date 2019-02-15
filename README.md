@@ -1,4 +1,4 @@
-# calculon
+# Calculator
 
 ## Project setup
 ```
