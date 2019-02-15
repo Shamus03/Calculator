@@ -1,6 +1,6 @@
 # Calculator
 
-Visually modeled off of the iOS 12 calculator and optimized for display on iPhone X.
+Visually modeled after the iOS 12 calculator and optimized for display on iPhone X.
 
 Functionality based on the HP-41CX, which I used all through college.
 
