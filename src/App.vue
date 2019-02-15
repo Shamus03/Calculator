@@ -339,13 +339,12 @@ body {
   width: 100%;
   border-spacing: 0 .8rem;
   border-collapse: separate;
-  padding-left: 10px;
-  padding-right: 10px;
 
   tr {
     td {
       text-align: center;
       button {
+        padding: 0;
         border-radius: $radius;
         border: 1px solid transparent;
         width: $radius * 2;
