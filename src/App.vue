@@ -349,6 +349,8 @@ body {
         border: 1px solid transparent;
         width: $radius * 2;
         height: $radius * 2;
+        outline: none;
+        user-select: none;
       }
 
       &[colspan="2"] {
@@ -367,10 +369,10 @@ body {
   background-color: $bg;
   color: $fg;
   font-size: 1.8rem;
-  outline: none;
-  user-select: none;
+  transition: background-color .5s;
   &:active {
     background-color: lighten($bg, 20%);
+    transition: background-color 0s;
   }
 }
 
