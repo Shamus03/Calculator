@@ -314,7 +314,7 @@ body {
   left: 0;
   position: absolute;
   margin-bottom: 3.9em;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   width: 100%;
 }
 
