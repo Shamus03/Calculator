@@ -28,14 +28,14 @@
             <button
               v-if="bufferEmpty"
               class="btn-light"
-              @click="clearAll()"
+              @touchend="clearAll()"
             >
               AC
             </button>
             <button
               v-else
               class="btn-light"
-              @click="clear()"
+              @touchend="clear()"
             >
               C
             </button>
@@ -43,7 +43,7 @@
           <td>
             <button
               class="btn-light"
-              @click="toggleNegative()"
+              @touchend="toggleNegative()"
             >
               +/-
             </button>
@@ -51,7 +51,7 @@
           <td>
             <button
               class="btn-light"
-              @click="divideBy100()"
+              @touchend="divideBy100()"
             >
               %
             </button>
@@ -59,7 +59,7 @@
           <td>
             <button
               class="btn-orange"
-              @click="divide()"
+              @touchend="divide()"
             >
               ÷
             </button>
@@ -69,7 +69,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(7)"
+              @touchend="type(7)"
             >
               7
             </button>
@@ -77,7 +77,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(8)"
+              @touchend="type(8)"
             >
               8
             </button>
@@ -85,7 +85,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(9)"
+              @touchend="type(9)"
             >
               9
             </button>
@@ -93,7 +93,7 @@
           <td>
             <button
               class="btn-orange"
-              @click="multiply()"
+              @touchend="multiply()"
             >
               ×
             </button>
@@ -103,7 +103,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(4)"
+              @touchend="type(4)"
             >
               4
             </button>
@@ -111,7 +111,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(5)"
+              @touchend="type(5)"
             >
               5
             </button>
@@ -119,7 +119,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(6)"
+              @touchend="type(6)"
             >
               6
             </button>
@@ -127,7 +127,7 @@
           <td>
             <button
               class="btn-orange"
-              @click="subtract()"
+              @touchend="subtract()"
             >
               −
             </button>
@@ -137,7 +137,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(1)"
+              @touchend="type(1)"
             >
               1
             </button>
@@ -145,7 +145,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(2)"
+              @touchend="type(2)"
             >
               2
             </button>
@@ -153,7 +153,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type(3)"
+              @touchend="type(3)"
             >
               3
             </button>
@@ -161,7 +161,7 @@
           <td>
             <button
               class="btn-orange"
-              @click="add()"
+              @touchend="add()"
             >
               +
             </button>
@@ -171,7 +171,7 @@
           <td colspan="2">
             <button
               class="btn-num"
-              @click="type(0)"
+              @touchend="type(0)"
             >
               0
             </button>
@@ -179,7 +179,7 @@
           <td>
             <button
               class="btn-num"
-              @click="type('.')"
+              @touchend="type('.')"
             >
               .
             </button>
@@ -187,7 +187,7 @@
           <td>
             <button
               class="btn-orange"
-              @click="push()"
+              @touchend="push()"
             >
               ⌤
             </button>
@@ -307,6 +307,10 @@ export default Vue.extend({
 <style lang="scss">
 body {
   background: black !important;
+}
+
+html {
+  touch-action: none;
 }
 
 #app {

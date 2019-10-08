@@ -12,6 +12,11 @@ if (process.env.NODE_ENV === 'production') {
         'App is being served from cache by a service worker.\n' +
         'For more details, visit https://goo.gl/AFskqB'
       )
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (confirm('New version available!  Refresh?')) {
+          window.location.reload()
+        }
+      })
     },
     registered () {
       console.log('Service worker has been registered.')
