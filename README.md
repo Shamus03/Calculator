@@ -8,27 +8,32 @@ Functionality based on the HP-41CX, which I used all through college.
 
 ## Project setup
 ```
-yarn install
+npm install
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+npm run build
 ```
 
 ### Run your tests
 ```
-yarn run test
+npm run test
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+npm run lint
+```
+
+### Deploys the current branch to GitHub Pages
+```
+npm run deploy
 ```
 
 ### Customize configuration
