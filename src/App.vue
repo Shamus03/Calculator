@@ -15,7 +15,7 @@
       ref="buffer"
       class="buffer"
       :style="{
-        fontSize: (5 - (buffer.length > 7 ? (buffer.length - 5) / 3 : 0)) + 'rem'
+        fontSize: (5 - (displayedBuffer.length > 7 ? (displayedBuffer.length - 5) / 3 : 0)) + 'rem'
       }"
     >
       {{ displayedBuffer }}
@@ -335,6 +335,12 @@ export default Vue.extend({
     },
     square () {
       this.unaryOperation(a => a * a)
+    },
+    power () {
+      this.operation((a, b) => Math.pow(a, b))
+    },
+    rootn () {
+      this.operation((a, b) => Math.pow(a, 1 / b))
     },
     unaryOperation (f: (a: number) => number) {
       const a = +this.buffer
