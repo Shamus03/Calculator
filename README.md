@@ -6,6 +6,8 @@ Functionality based on the HP-41CX, which I used all through college.
 
 <img src="screenshots/screen1.png" width="30%">
 
+<img src="screenshots/screen2.png" width="30%">
+
 ## Project setup
 ```
 npm install
