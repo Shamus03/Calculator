@@ -5,10 +5,10 @@
       class="stack"
     >
       <p
-        v-for="(v,i) in stack"
+        v-for="(v,i) in displayedStack"
         :key="i"
       >
-        {{ v | commas }}
+        {{ v }}
       </p>
     </div>
     <div
@@ -18,7 +18,7 @@
         fontSize: (5 - (buffer.length > 7 ? (buffer.length - 5) / 3 : 0)) + 'rem'
       }"
     >
-      {{ buffer | commas }}
+      {{ displayedBuffer }}
     </div>
 
     <table class="calc">
@@ -51,9 +51,10 @@
           <td>
             <button
               class="btn-light"
-              @touchend="divideBy100()"
+              :class="second && 'active'"
+              @touchend="second = !second"
             >
-              %
+              2<sup>nd</sup>
             </button>
           </td>
           <td>
@@ -68,6 +69,14 @@
         <tr>
           <td>
             <button
+              v-if="second"
+              class="btn-orange"
+              @touchend="square()"
+            >
+              x<sup>2</sup>
+            </button>
+            <button
+              v-else
               class="btn-num"
               @touchend="type(7)"
             >
@@ -76,6 +85,14 @@
           </td>
           <td>
             <button
+              v-if="second"
+              class="btn-orange"
+              @touchend="rootn()"
+            >
+              <sup>y</sup>√x
+            </button>
+            <button
+              v-else
               class="btn-num"
               @touchend="type(8)"
             >
@@ -102,6 +119,14 @@
         <tr>
           <td>
             <button
+              v-if="second"
+              class="btn-orange"
+              @touchend="sqrt()"
+            >
+              √
+            </button>
+            <button
+              v-else
               class="btn-num"
               @touchend="type(4)"
             >
@@ -110,6 +135,14 @@
           </td>
           <td>
             <button
+              v-if="second"
+              class="btn-orange"
+              @touchend="power()"
+            >
+              x<sup>y</sup>
+            </button>
+            <button
+              v-else
               class="btn-num"
               @touchend="type(5)"
             >
@@ -207,22 +240,28 @@ interface Button {
   class?: string
 }
 
+const shortenNumber = (v: string | number): string => {
+  const [first, ...rest] = v.toString().split('.')
+  return [first.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'), ...rest.map(r => r.slice(0, 6))].join('.')
+}
+
 export default Vue.extend({
-  filters: {
-    commas (v: number | string): string {
-      const [first, ...rest] = v.toString().split('.')
-      return [first.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'), ...rest].join('.')
-    },
-  },
   data () {
     return {
       buffer: '0',
       nextTypeWillPush: false,
       nextTypeWillClear: false,
       stack: [] as number[],
+      second: false,
     }
   },
   computed: {
+    displayedBuffer (): string {
+      return shortenNumber(this.buffer)
+    },
+    displayedStack (): string[] {
+      return this.stack.map(shortenNumber)
+    },
     bufferEmpty (): boolean {
       return this.buffer === '0'
     },
@@ -235,6 +274,7 @@ export default Vue.extend({
       })
     },
     buffer () {
+      this.second = false
       this.$nextTick(() => {
         const s = this.$refs.buffer as HTMLDivElement
         s.scrollLeft = s.scrollWidth
@@ -244,6 +284,7 @@ export default Vue.extend({
   methods: {
     clear () {
       this.buffer = '0'
+      this.second = false
     },
     clearAll () {
       this.clear()
@@ -274,11 +315,6 @@ export default Vue.extend({
       this.stack.push(parseFloat(this.buffer))
       this.nextTypeWillClear = true
     },
-    divideBy100 () {
-      const b = +this.buffer
-      this.buffer = (b / 100).toString()
-      this.nextTypeWillPush = true
-    },
     toggleNegative () {
       this.buffer = (-this.buffer).toString()
     },
@@ -293,6 +329,17 @@ export default Vue.extend({
     },
     divide () {
       this.operation((a, b) => a / b)
+    },
+    sqrt () {
+      this.unaryOperation(a => Math.sqrt(a))
+    },
+    square () {
+      this.unaryOperation(a => a * a)
+    },
+    unaryOperation (f: (a: number) => number) {
+      const a = +this.buffer
+      this.buffer = f(a).toString()
+      this.nextTypeWillPush = true
     },
     operation (f: (a: number, b: number) => number) {
       const b = +this.buffer
@@ -311,6 +358,10 @@ body {
 
 html {
   touch-action: none;
+}
+
+sup {
+  font-size: 50%;
 }
 
 #app {
@@ -379,7 +430,7 @@ html {
   color: $fg;
   font-size: 1.8rem;
   transition: background-color .5s;
-  &:active {
+  &:active, &.active {
     background-color: lighten($bg, 20%);
     transition: background-color 0s;
   }
