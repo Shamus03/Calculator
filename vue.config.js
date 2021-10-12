@@ -3,6 +3,7 @@ module.exports = {
     ? '/calculator/'
     : '/',
   pwa: {
+    themeColor: '#000',
     appleMobileWebAppCapable: 'yes',
     appleMobileWebAppStatusBarStyle: 'black',
     iconPaths: {
