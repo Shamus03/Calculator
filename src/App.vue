@@ -28,14 +28,14 @@
             <button
               v-if="bufferEmpty"
               class="btn-light"
-              @touchend="clearAll()"
+              @click="clearAll()"
             >
               AC
             </button>
             <button
               v-else
               class="btn-light"
-              @touchend="clear()"
+              @click="clear()"
             >
               C
             </button>
@@ -43,7 +43,7 @@
           <td>
             <button
               class="btn-light"
-              @touchend="toggleNegative()"
+              @click="toggleNegative()"
             >
               +/-
             </button>
@@ -52,7 +52,7 @@
             <button
               class="btn-light"
               :class="second && 'active'"
-              @touchend="second = !second"
+              @click="second = !second"
             >
               2<sup>nd</sup>
             </button>
@@ -60,7 +60,7 @@
           <td>
             <button
               class="btn-orange"
-              @touchend="divide()"
+              @click="divide()"
             >
               ÷
             </button>
@@ -71,14 +71,14 @@
             <button
               v-if="second"
               class="btn-orange"
-              @touchend="square()"
+              @click="square()"
             >
               x<sup>2</sup>
             </button>
             <button
               v-else
               class="btn-num"
-              @touchend="type(7)"
+              @click="type(7)"
             >
               7
             </button>
@@ -87,14 +87,14 @@
             <button
               v-if="second"
               class="btn-orange"
-              @touchend="rootn()"
+              @click="rootn()"
             >
               <sup>y</sup>√x
             </button>
             <button
               v-else
               class="btn-num"
-              @touchend="type(8)"
+              @click="type(8)"
             >
               8
             </button>
@@ -102,7 +102,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type(9)"
+              @click="type(9)"
             >
               9
             </button>
@@ -110,7 +110,7 @@
           <td>
             <button
               class="btn-orange"
-              @touchend="multiply()"
+              @click="multiply()"
             >
               ×
             </button>
@@ -121,14 +121,14 @@
             <button
               v-if="second"
               class="btn-orange"
-              @touchend="sqrt()"
+              @click="sqrt()"
             >
               √
             </button>
             <button
               v-else
               class="btn-num"
-              @touchend="type(4)"
+              @click="type(4)"
             >
               4
             </button>
@@ -137,14 +137,14 @@
             <button
               v-if="second"
               class="btn-orange"
-              @touchend="power()"
+              @click="power()"
             >
               x<sup>y</sup>
             </button>
             <button
               v-else
               class="btn-num"
-              @touchend="type(5)"
+              @click="type(5)"
             >
               5
             </button>
@@ -152,7 +152,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type(6)"
+              @click="type(6)"
             >
               6
             </button>
@@ -160,7 +160,7 @@
           <td>
             <button
               class="btn-orange"
-              @touchend="subtract()"
+              @click="subtract()"
             >
               −
             </button>
@@ -170,7 +170,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type(1)"
+              @click="type(1)"
             >
               1
             </button>
@@ -178,7 +178,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type(2)"
+              @click="type(2)"
             >
               2
             </button>
@@ -186,7 +186,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type(3)"
+              @click="type(3)"
             >
               3
             </button>
@@ -194,7 +194,7 @@
           <td>
             <button
               class="btn-orange"
-              @touchend="add()"
+              @click="add()"
             >
               +
             </button>
@@ -204,7 +204,7 @@
           <td colspan="2">
             <button
               class="btn-num"
-              @touchend="type(0)"
+              @click="type(0)"
             >
               0
             </button>
@@ -212,7 +212,7 @@
           <td>
             <button
               class="btn-num"
-              @touchend="type('.')"
+              @click="type('.')"
             >
               .
             </button>
@@ -220,7 +220,7 @@
           <td>
             <button
               class="btn-orange"
-              @touchend="push()"
+              @click="push()"
             >
               ⌤
             </button>
@@ -233,12 +233,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-
-interface Button {
-  text: string,
-  action: (() => void) | string
-  class?: string
-}
 
 const shortenNumber = (v: string | number): string => {
   const [first, ...rest] = v.toString().split('.')
