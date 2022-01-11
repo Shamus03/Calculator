@@ -15,8 +15,9 @@
       ref="buffer"
       class="buffer"
       :style="{
-        fontSize: (5 - (displayedBuffer.length > 7 ? (displayedBuffer.length - 5) / 3 : 0)) + 'rem'
+        '--buffer-font-size': bufferFontSize,
       }"
+      style="font-size: calc(min(5em, var(--buffer-font-size)))"
     >
       {{ displayedBuffer }}
     </div>
@@ -239,6 +240,17 @@ const shortenNumber = (v: string | number): string => {
   return [first.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,'), ...rest.map(r => r.slice(0, 6))].join('.')
 }
 
+const canvas = document.createElement('canvas')
+function getTextWidth (text: string, font: string): number {
+  const context = canvas.getContext('2d')
+  if (!context) {
+    throw new Error('no canvas context')
+  }
+  context.font = font
+  const metrics = context.measureText(text)
+  return metrics.width
+}
+
 export default Vue.extend({
   data () {
     return {
@@ -258,6 +270,11 @@ export default Vue.extend({
     },
     bufferEmpty (): boolean {
       return this.buffer === '0'
+    },
+    bufferFontSize (): string {
+      const textWidth = getTextWidth(this.displayedBuffer, '-apple-system, BlinkMacSystemFont, sans-serif')
+      const screenWidth = document.body.clientWidth
+      return screenWidth / textWidth * 9 + 'px'
     },
   },
   watch: {
